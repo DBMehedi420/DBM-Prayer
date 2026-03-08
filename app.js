@@ -201,3 +201,39 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
+
+let deferredPrompt;
+const installBtn = document.getElementById('install-app');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // ডিফল্ট প্রম্পট বন্ধ করুন
+    e.preventDefault();
+    // ইভেন্টটি সেভ করে রাখুন
+    deferredPrompt = e;
+    // এখন বাটনটি দেখান
+    if (installBtn) installBtn.style.display = 'block';
+});
+
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        
+        // ইনস্টল প্রম্পট দেখান
+        deferredPrompt.prompt();
+        
+        // ইউজারের সিদ্ধান্ত চেক করুন
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to the install prompt: ${outcome}`);
+        
+        // একবার ব্যবহার হয়ে গেলে প্রম্পট ক্লিয়ার করুন
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+    });
+}
+
+// অ্যাপটি অলরেডি ইনস্টল করা থাকলে বাটন লুকান
+window.addEventListener('appinstalled', () => {
+    if (installBtn) installBtn.style.display = 'none';
+    deferredPrompt = null;
+    console.log('PWA was installed');
+});
