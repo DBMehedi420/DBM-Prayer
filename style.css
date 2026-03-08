@@ -1,0 +1,56 @@
+:root {
+    --primary: #1b4332; --accent: #52b788; --bg: #f4f7f6; --text: #1b4332;
+    --glass: rgba(255, 255, 255, 0.85); --glass-border: rgba(255, 255, 255, 0.4);
+}
+[data-theme="dark"] {
+    --bg: #0b1a14; --glass: rgba(20, 35, 28, 0.8); --text: #e8f5e9; --primary: #74c69d;
+}
+
+body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; overflow-x: hidden; text-align: center; }
+.app-container { max-width: 500px; margin: 0 auto; min-height: 100vh; padding-bottom: 90px; }
+
+.glass-header { position: sticky; top: 0; padding: 15px 20px; background: var(--glass); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid var(--glass-border); }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.glass-card { background: var(--glass); backdrop-filter: blur(10px); border-radius: 20px; padding: 20px; margin: 15px; border: 1px solid var(--glass-border); }
+.hero-card { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; }
+.timer-display { font-size: 2.8rem; font-weight: 800; }
+
+.bottom-nav { position: fixed; bottom: 0; width: 100%; max-width: 500px; height: 75px; background: var(--glass); backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; border-top: 1px solid var(--glass-border); z-index: 1000; }
+.nav-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; opacity: 0.5; cursor: pointer; color: var(--text); }
+.nav-item.active { opacity: 1; color: var(--accent); }
+.nav-item i { margin-bottom: 4px; }
+
+/* --- COMPASS UI --- */
+.compass-wrapper { position: relative; width: 280px; height: 280px; margin: 30px auto; border-radius: 50%; background: var(--glass); border: 3px solid var(--glass-border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.static-pointer { position: absolute; top: 10px; z-index: 20; color: #ff4d4d; transform: scale(2); }
+.compass-dial { position: absolute; width: 100%; height: 100%; transition: transform 0.1s linear; }
+.cardinal { position: absolute; font-weight: bold; font-size: 1.4rem; color: var(--text); }
+.n { top: 15px; left: 50%; transform: translateX(-50%); color: #ff4d4d; }
+.s { bottom: 15px; left: 50%; transform: translateX(-50%); }
+.e { right: 15px; top: 50%; transform: translateY(-50%); }
+.w { left: 15px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 900; font-size: 1.8rem; }
+
+/* --- CALIBRATION --- */
+.calibration-overlay { position: fixed; inset: 0; background: var(--glass); backdrop-filter: blur(20px); z-index: 2000; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.figure-8-animation i { font-size: 4rem; color: var(--accent); animation: figure8 2.5s infinite ease-in-out; display: block; margin-bottom: 20px; }
+@keyframes figure8 { 0%, 100% { transform: translate(0,0) rotate(0deg); } 25% { transform: translate(30px, -15px) rotate(25deg); } 75% { transform: translate(-30px, 15px) rotate(-25deg); } }
+
+.view { display: none; }
+.view.active { display: block; animation: fadeIn 0.4s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.tap-circle { width: 180px; height: 180px; border-radius: 50%; border: 8px solid var(--accent); background: none; color: var(--text); font-size: 2.5rem; font-weight: 800; margin: 40px auto; display: block; cursor: pointer; transition: 0.1s; }
+.tap-circle:active { transform: scale(0.95); background: rgba(82, 183, 136, 0.1); }
+.copy-btn { width: 90%; margin: 10px auto; display: block; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; }
+.grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; }
+
+#tasbih-reset{
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}

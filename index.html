@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1b4332">
+    <link rel="manifest" href="manifest.json">
+    <title>Islamic Life Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body data-theme="light">
+
+    <div class="app-container">
+        <header class="glass-header">
+            <div class="header-content">
+                <div style="text-align: left;">
+                    <div id="hijri-date" style="font-weight: 800; font-size: 1.1rem;">English Date</div>
+                    <div id="location-text" style="font-size: 0.7rem; opacity: 0.6;">Detecting Location...</div>
+                </div>
+                <button id="theme-toggle" style="background:none; border:none; cursor:pointer; color:var(--text);">
+                    <i data-lucide="moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section id="prayer" class="view active">
+                <div class="glass-card hero-card">
+                    <small id="next-prayer-name">Next Prayer</small>
+                    <div id="countdown" class="timer-display">00:00:00</div>
+                </div>
+
+                <div class="glass-card">
+                    <p id="verse-en" style="font-style: italic; font-size: 0.9rem;">"Loading Quranic verse..."</p>
+                </div>
+
+                <div id="prayer-list" style="padding: 0 15px;"></div>
+            </section>
+
+            <section id="ramadan" class="view">
+                <div class="glass-card hero-card">
+                    <h2 style="margin:0;">রমজান সময়সূচী</h2>
+                    <p id="ramadan-date-info" style="font-size: 0.8rem; opacity: 0.9;"></p>
+                </div>
+                <div class="grid-container">
+                    <div class="glass-card" style="margin:0;">
+                        <small>সেহরি শেষ</small>
+                        <h3 id="sehri-time">--:--</h3>
+                    </div>
+                    <div class="glass-card" style="margin:0;">
+                        <small>ইফতার শুরু</small>
+                        <h3 id="iftar-time">--:--</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section id="qibla" class="view">
+                <div class="compass-wrapper">
+                    <div class="static-pointer"><i data-lucide="chevron-down"></i></div>
+                    <div id="compass-dial" class="compass-dial">
+                        <span class="cardinal n">N</span>
+                        <span class="cardinal e">E</span>
+                        <span class="cardinal s">S</span>
+                        <span class="cardinal w">W</span>
+                        <div style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%) rotate(-90deg); font-size: 2.5rem;">🕋</div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <h2 id="qibla-degree">0°</h2>
+                    <p id="qibla-feedback">সেন্সর চালু করুন</p>
+                    <button id="enable-compass" class="copy-btn">Enable Compass</button>
+                </div>
+            </section>
+
+            <section id="tasbih" class="view">
+                <div class="glass-card">
+                    <h1 id="tasbih-display" style="font-size: 4rem; margin: 0;">0</h1>
+                    <button id="tasbih-trigger" class="tap-circle">TAP</button>
+                    <button id="tasbih-reset">Reset Counter</button>
+                </div>
+            </section>
+
+            <section id="names" class="view">
+                <div class="grid-container" id="names-grid"></div>
+            </section>
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" data-nav="prayer"><i data-lucide="home"></i><span>Home</span></div>
+            <div class="nav-item" data-nav="ramadan"><i data-lucide="calendar"></i><span>Ramadan</span></div>
+            <div class="nav-item" data-nav="qibla"><i data-lucide="compass"></i><span>Qibla</span></div>
+            <div class="nav-item" data-nav="tasbih"><i data-lucide="fingerprint"></i><span>Tasbih</span></div>
+            <div class="nav-item" data-nav="names"><i data-lucide="heart"></i><span>Names</span></div>
+        </nav>
+    </div>
+
+    <div id="calibration-overlay" class="calibration-overlay" style="display: none;">
+        <div class="figure-8-animation"><i data-lucide="refresh-cw"></i></div>
+        <h3>ক্যালিব্রেশন প্রয়োজন</h3>
+        <p style="padding: 0 40px; font-size: 0.9rem; opacity: 0.8;">ফোনটি বাতাসে '8' আকৃতিতে ঘুরান এবং নিচের বাটনে ক্লিক করুন</p>
+        <button id="start-qibla-btn" class="copy-btn" style="width: 200px;">আমি প্রস্তুত</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
