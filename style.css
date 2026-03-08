@@ -54,3 +54,33 @@ body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); col
     border: none;
     cursor: pointer;
 }
+
+/* Install Button Styling & Animation */
+#install-app {
+    animation: pulse-green 2s infinite;
+    box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.7);
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#install-app:hover {
+    transform: scale(1.05);
+    background: var(--primary);
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(82, 183, 136, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(82, 183, 136, 0);
+    }
+}
