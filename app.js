@@ -193,13 +193,9 @@ async function load99Names() {
 function updateTasbihDisplay() { document.getElementById('tasbih-display').innerText = state.tasbih; }
 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').then(reg => {
-            console.log('Service Worker Registered!');
-        }).catch(err => {
-            console.log('Service Worker Failed!', err);
-        });
-    });
+    navigator.serviceWorker.register('/sw.js')
+    .then(() => console.log("Service Worker Registered"))
+    .catch(err => console.log("SW Registration Failed", err));
 }
 
 let deferredPrompt;
